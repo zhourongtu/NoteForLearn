@@ -87,7 +87,9 @@ git status
 git diff
 git diff --staged(和上次提交的差异)
 git diff --cached(同上)
-测试用例
+git commit -a 跳过add
+gir rm 从暂存区移除
+git rm --cached readme.txt(移除跟踪)
 ```
 1. Git文件状态变化周期
 2. .gitignore
