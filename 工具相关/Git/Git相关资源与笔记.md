@@ -90,3 +90,6 @@ git help ...
 - 通用标记
   - --cached：暂存区相关处理
 
+使用rebase压缩提交
+http://t.zoukankan.com/dazhan-p-9289667.html
+
