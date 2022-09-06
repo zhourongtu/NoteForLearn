@@ -39,6 +39,7 @@ Git只关心文件数据的整体是否发生变化，而大多数其他系统�
 > Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成，看起来就像是：``` 24b9da6552252987aa493b52f8696cd6d3b00373 ```
 - 多数操作仅添加数据
 - 文件的三种状态: 已提交（committed），已修改（modified）和已暂存（staged）
+- Git的三个区域：HEAD、index、working
 - Git文件状态变化周期
 
 ## 1.了解如何配置Git。
@@ -66,19 +67,24 @@ git help ...
   - 以外的文件，模式前跟!
   > 所谓的 glob 模式是指 shell 所使用的简化了的正则表达式。星号（*）匹配零个或多个任意字符；[abc] 匹配任何一个列在方括号中的字符（这个例子要么匹配一个 a，要么匹配一个 b，要么匹配一个 c）；问号（?）只匹配一个任意字符；如果在方括号中使用短划线分隔两个字符，表示所有在这两个字符范围内的都可以匹配（比如 [0-9] 表示匹配所有 0 到 9 的数字）。
 
-
+搜索
 ## 2.了解如何在本地增删查改
 - 增
   - 创建init、clone。增加到暂存区add。提交commit。
 - 删
   - 移除暂存区git rm、取消跟踪git rm --cached、checkout、reset
-  > rm：删除工作区文件。+git add，commit。删除工作区+版本库文件。
-  > git rm：删除工作区文件，删除记录放入暂存区，提交后删除工作区+版本库文件。
-  > 文件修改后，git rm会报错。-f。删除记录放入暂存区
-  > git rm --cached：删除暂存区文件，保留工作区。
-  > git 
+  > https://www.cnblogs.com/kongbursi-2292702937/p/15020513.html  
+  rm：删除工作区文件。+git add，commit。删除工作区+版本库文件。  
+  > git rm：删除工作区文件，删除记录放入暂存区，提交后删除工作区+版本库文件。  
+  > 文件修改后，git rm会报错。-f。删除记录放入暂存区  
+  > git rm --cached：删除暂存区文件，保留工作区。  
+  > git reset：（三个步骤：改变HEAD的commit版本、1+index区域更新为HEAD、1+2+working区域更新为HEAD）会修改版本历史，丢弃一部分版本历史。  
+  > git reset ... file：相当于把某个文件恢复到index区域中。
+  > git revert:
+  > ![图片](./Git_revert_reset.png)  
+  > git checkout file：更新index、working的内容。
 - 查
-  - 当前文件状态status、历史提交记录状态log、变化状态diff
+  - 当前文件状态status、历史提交记录状态log(或者show)、变化状态diff
 - 改
   - 修改当前提交记录的日志(--amend)、修改分支或文件checkout [branch] [file]
 - 通用标记
