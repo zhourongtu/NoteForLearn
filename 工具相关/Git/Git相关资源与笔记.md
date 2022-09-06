@@ -90,6 +90,10 @@ git help ...
 - 通用标记
   - --cached：暂存区相关处理
 
+## 3.使用Git的远程仓库，以及对应的标签功能
+
+
+
 使用rebase压缩提交
 http://t.zoukankan.com/dazhan-p-9289667.html
 
