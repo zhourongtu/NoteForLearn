@@ -4,6 +4,14 @@
 https://www.php.cn/manual/view/35002.html  
 《Pro Git》
 
+# Git的基本特性
+Git只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异。
+- 直接记录快照，而非差异比较
+- 近乎所有操作都是本地执行
+- 多数操作仅添加数据
+- 时刻保持数据完整性
+> Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成，看起来就像是：``` 24b9da6552252987aa493b52f8696cd6d3b00373 ```
+
 # 梳理架构
 1.Git的对象模型
   - tree、commit、blob
@@ -14,11 +22,13 @@ https://www.php.cn/manual/view/35002.html
     - ![文件生命周期](pic\git_file_life_cycle.png)
   - 在单分支下，所有的控制方式，全部都是针对文件的生命周期做变化。
 3.Git的分支历史对象模型（参考Git的数据模型）。
+  - 学会Git的分支开发方式：长期开发分支、特性(topic)分支
 
 # 其他问题
 1.Git中没有被指向的node(提交)可以使用git gc进行垃圾回收。git fsck --lost-found进行查找。
+2.一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。
 
-# Git的数据模型ss
+## Git的数据模型
 参考资料：https://eagain.net/articles/git-for-computer-scientists/
 ``` python
 // 文件就是一组数据
@@ -45,14 +55,6 @@ def store(object):
 def load(id):
     return objects[id]
 ```
-
-# Git基础知识
-Git只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异。
-- 直接记录快照，而非差异比较
-- 近乎所有操作都是本地执行
-- 时刻保持数据完整性
-> Git 使用 SHA-1 算法计算数据的校验和，通过对文件的内容或目录的结构计算出一个 SHA-1 哈希值，作为指纹字符串。该字串由 40 个十六进制字符（0-9 及 a-f）组成，看起来就像是：``` 24b9da6552252987aa493b52f8696cd6d3b00373 ```
-- 多数操作仅添加数据
 
 ## 1.了解如何配置Git。
 - /etc/gitconfig Windows在安装目录。
@@ -98,10 +100,31 @@ git help ...
   - 当前文件状态status、历史提交记录状态log(或者show)、变化状态diff
 - 改
   - 修改当前提交记录的日志(--amend)、修改分支或文件checkout [branch] [file]
+  - 合并记录(merge)、rebase
+  - merge 命令，它会把两个分支最新的快照（C3 和 C4）以及二者最新的共同祖先（C2）进行三方合并，合并的结果是产生一个新的提交对象
+  - rebase 命令，就可以把在一个分支里提交的改变移到另一个分支里重放一遍。
+    > git rebase --onto master server client
+
 - 通用标记
   - --cached：暂存区相关处理
 
 ## 3.使用Git的远程仓库，以及对应的标签功能
+```
+git clone: 会建立你自己的本地分支 master 和远程分支 origin/master，并且将它们都指向 origin 上的 master 分支。
+git fetch origin
+git remote add
+推送本地分支
+git push origin branchname  // git push origin serverfix:serverfix
+git push origin serverfix:awesomebranch 命名不同
+协同远程分支
+git checkout -b serverfix origin/serverfix 可以在远程分支的基础上分化出一个新的分支来
+从远程分支 checkout 出来的本地分支，称为 跟踪分支 (tracking branch)。
+git checkout -b [分支名] [远程名]/[分支名]
+git checkout --track origin/serverfix （简化）
+删除远程分支
+git push origin :serverfix
+git push [远程名] [本地分支]:[远程分支] 语法，如果省略 [本地分支]，那就等于是在说“在这里提取空白然后把它变成[远程分支]”。
+```
 
 ## 4.了解分支
 
