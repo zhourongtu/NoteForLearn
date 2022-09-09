@@ -17,9 +17,9 @@ https://www.php.cn/manual/view/35002.html
 
 # 其他问题
 1.Git中没有被指向的node(提交)可以使用git gc进行垃圾回收。git fsck --lost-found进行查找。
-
-
-# Git的数据模型
+ssssssssss
+ssss
+# Git的数据模型ss
 参考资料：https://eagain.net/articles/git-for-computer-scientists/
 ``` python
 // 文件就是一组数据
