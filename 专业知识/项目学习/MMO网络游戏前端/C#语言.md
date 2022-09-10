@@ -58,3 +58,86 @@ i.SpeakValue();
   - 为整型拓展一个求平方的方法
   - 写一个玩家类，包含姓名，血量，攻击力，防御力等特征，攻击，移动，受伤等方法
   - 为该玩家类拓展一个自杀的方法。
+
+# C#进阶
+
+## 第10课：泛型
+1. 知识点一、泛型是什么？
+- 泛型实现了类型参数化，达到代码重用的目的
+- 通过类型参数化来实现同一份代码上操作多种类型
+
+- 泛型相当于类型占位符
+- 定义类或方法时使用代替符代表变量类型
+- 当真正使用了或方法时再具体指定类型
+2. 知识点二、泛型分类
+- 泛型类和泛型接口
+- 基本语法
+``` C#
+class 类名<泛型占位字母>;
+interface 接口名<泛型展位字母>;
+```
+- 泛型函数
+- 基本语法：
+``` C#
+函数名<泛型占位字母>(参数列表)
+```
+- 注意：泛型占位字符可以有多个，用逗号分开
+3. 知识点三、泛型类和接口
+``` C#
+class TestClass<T>
+{
+  public T value;
+}
+TestClass<int> t = new TestClass<int>();
+interface TestInterface<T>
+{
+  T value{
+    get;
+    set;
+  }
+}
+class Test: TestInterface<int>
+{
+  // public int value{
+  //   get;
+  //   set;
+  // }
+}
+```
+4. 知识点四、泛型方法
+- 1.普通类的泛型方法
+``` C#
+class Test
+{
+  void Func<T>(T value)
+  {
+    // 逻辑处理
+    T t = default(T);
+  }
+  // ... 可重载
+}
+```
+- 2.泛型类的泛型方法
+``` C#
+class Test<T>
+{
+  public T value;
+  public void TestFun(T t); // 不属于泛型方法
+  public void TestFunc2<K>();
+}
+// 可省略不写，但不合适
+Test<string> a;
+a.TestFunc2("abc"); // 可以推断...
+```
+5. 知识点五、泛型的作用
+- 1.不同类型对象的相同逻辑可以选择泛型
+- 2.使用泛型可以一定程度上避免装箱拆箱
+- 举例：优化ArrayList
+``` C#
+class ArrayList<T>
+{
+  private T[] array;
+  ...add?
+  ...?
+}
+```
