@@ -1,4 +1,6 @@
-参考资料：唐老狮——Unity入门概述
+参考资料：
+
+唐老狮——Unity入门概述：https://www.taikr.com/course/1175/task/37892/show#
 
 1. Unity环境搭建
 2. Unity工作原理
