@@ -78,12 +78,30 @@
 
 ## Unity的重要组件和API
 - GameObject
+> 增删查（static、成员变量）改（成员方法）系列
   - 成员变量（this.gameObject.xxx)
     - .name(可改)、.activeSelf、.isStatic、.layer、.tag(字符串)、.transform
   - 静态方法（点进去看，搜public static，进一步再查看Unity的Object）
-    - 注意：找不到失活的对象，查找单个对象不确定
     - GameObject：CreatePrimtive(...)、Find、Tag...（+s可以查找多个）
+      > 注意：找不到失活的对象，查找单个对象不确定
     - Object：
       - 查找某一个脚本对象、...
       - 实例化对象（克隆）（**1.场景中的一个对象**、**2.预制体对象（主要）**）
-  - 成员方法
+      - 删除一个对象（也可以删除脚本，可以删除很多东西）
+      > Destroy不会马上移除（只是加了个移除标志），一般情况下，下一帧时会移除。（降低卡顿）  
+      > 也可以选择马上移除
+    > 查找方法中，一个是查找GameObject，一个是查找脚本对象，查找效率都都不高，后者更低。  
+    > 继承Mono可以不打GameObject调用静态方法
+    - 默认切场景时，移除对象，如果过场景不被消除，可以使用DontDestroyOnLoad
+  - 成员方法（点进去看）
+    - 重要成员方法
+      - 创建空物体
+      - 为对象添加脚本AddComponent
+      - 得到脚本（与Mono相同）
+      - 标签比较
+      - 设置激活失活 SetActive
+    - 次要（不建议，效率低）
+      - 广播或者消息，让别人或者自己 执行某个行为 SendMessage("func_name")（使用反射）
+      - BroadcastMessage.. 自己和子对象
+      - SendMessageUpwards 自己和父对象
+
