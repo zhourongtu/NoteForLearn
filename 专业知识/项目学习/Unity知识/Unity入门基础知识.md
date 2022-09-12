@@ -72,4 +72,17 @@
 > 反射可以检测特性，Unity利用反射和特性机制实现了上述功能。
 - MonoBehavior(Mono)
   - 重要成员
+    - 获取依附的GameObject对象、对象位置信息、脚本是否激活。
+    - 
+    ``` C#
+    this.gameObject
+    this.transform
+    this.gameObject.transform
+    this.enable = false
+    // 也可以获取到别人的信息
+    ```
   - 重要方法
+    - 得到依附对象的其他脚本
+    ``` C#
+    this.GetComponent(...) as ;
+    ```
