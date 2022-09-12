@@ -70,5 +70,6 @@
     - 为方法添加特性，能够在Inspector中执行[ContextMenu("行为")]，脚本旁边出现函数。
   > Inspector就是在显示成员变量，改变它为成员变量的值。脚本内、Inspector、运行时数据是不一样的，运行时也是不会修改Inspector的值的。（CopyComponent可以用于复制）
 > 反射可以检测特性，Unity利用反射和特性机制实现了上述功能。
-
-
+- MonoBehavior(Mono)
+  - 重要成员
+  - 重要方法
