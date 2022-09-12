@@ -51,4 +51,24 @@
 ## Unity脚本基础
 - 脚本基本规则（继承MonoBehavior的和不继承MonoBehavior的）
 - 生命周期函数
+- Inspector窗口可编辑的变量
+  - 显示的可编辑内容就是脚本的成员变量（私有和保护不可编辑）
+  - 私有和保护可以使用[SerializeField]强制序列化特性
+    - 序列化：把一个对象保存到一个文件或者数据库字段去。
+  - 公共的默认可以编辑，可以通过[HideInInspector]特性隐藏。
+  - 大部分类型均可以显示编辑：int[]、List、Enum类、GameObject...
+    - 字典（怎么都不行）
+    - 自定义类型不行（struct、class），添加[System.Serializable]特性
+  - 辅助特性
+    - 分组说明特性[Header]，[Header("abc")]，增加分组
+    - 悬停注释，为变量添加说说明[ToolTips]
+    - 间隔特性[Space]
+    - 修饰数值滑条范围[Range(min, max)]
+    - 多行显示字符串[Multiline(4)]，默认3行
+    - 滚动条显示字符串[TextArea(3, 4)]，最少显示3行，超过4行出现滚动条
+    - 为变量添加快捷方法（参数1按钮名、参数2方法名）[ContextMenuItem("重置钱", "Test")]，右键可以重置
+    - 为方法添加特性，能够在Inspector中执行[ContextMenu("行为")]，脚本旁边出现函数。
+  > Inspector就是在显示成员变量，改变它为成员变量的值。脚本内、Inspector、运行时数据是不一样的，运行时也是不会修改Inspector的值的。（CopyComponent可以用于复制）
+> 反射可以检测特性，Unity利用反射和特性机制实现了上述功能。
+
 
