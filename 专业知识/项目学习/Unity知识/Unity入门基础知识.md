@@ -70,19 +70,20 @@
     - 为方法添加特性，能够在Inspector中执行[ContextMenu("行为")]，脚本旁边出现函数。
   > Inspector就是在显示成员变量，改变它为成员变量的值。脚本内、Inspector、运行时数据是不一样的，运行时也是不会修改Inspector的值的。（CopyComponent可以用于复制）
 > 反射可以检测特性，Unity利用反射和特性机制实现了上述功能。
-- MonoBehavior(Mono)
+- MonoBehavior(Mono)（可以通过点进去查看）
   - 重要成员
     - 获取依附的GameObject对象、对象位置信息、脚本是否激活。
-    - 
-    ``` C#
-    this.gameObject
-    this.transform
-    this.gameObject.transform
-    this.enable = false
-    // 也可以获取到别人的信息
-    ```
   - 重要方法
-    - 得到依附对象的其他脚本
-    ``` C#
-    this.GetComponent(...) as ;
-    ```
+    - 得到依附对象的其他脚本GetComponent
+
+## Unity的重要组件和API
+- GameObject
+  - 成员变量（this.gameObject.xxx)
+    - .name(可改)、.activeSelf、.isStatic、.layer、.tag(字符串)、.transform
+  - 静态方法（点进去看，搜public static，进一步再查看Unity的Object）
+    - 注意：找不到失活的对象，查找单个对象不确定
+    - GameObject：CreatePrimtive(...)、Find、Tag...（+s可以查找多个）
+    - Object：
+      - 查找某一个脚本对象、...
+      - 实例化对象（克隆）（**1.场景中的一个对象**、**2.预制体对象（主要）**）
+  - 成员方法
