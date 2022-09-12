@@ -2,8 +2,6 @@
 
 
 
-
-
 # 关键字
 - new：运算符、约束、修饰符
   - 运算符：创建对象和调用构造函数
@@ -156,7 +154,44 @@ class ArrayList<T>
 ### 泛型约束
 
 ## 第10章：反射和特性
-
+- 编译器是一种翻译程序
+- 程序集：由编译器编译得到的，用于进一步编译的中间产物。.dll，.exe。代码库文件、可执行文件。
+- 元数据：用于描述数据的数据。（类、类的函数、类的变量等）
 ### 反射
+- 反射：程序在运行时，可以查看其他程序集或自身的元数据。（函数、变量、类、对象等），实例化、执行、操作它们。  
+  一个运行的程序查看本身或其他程序的元数据的行为就叫反射。
+- 反射的作用：
+  - 因为反射可以在编译时获得信息，提高了程序的拓展性和灵活性
+  - 1.程序运行时获得元数据，包括元数据的特性。
+  - 2.程序运行时，实例化对象，操作对象。
+  - 3.程序运行时创建新对象，用这些对象执行任务。
+``` C#
+using System.Reflection;
+// Type、Assembly、Activator
+// Type（类的信息类）
+// 它是反射功能的基础！
+// 它是访问元数据的主要方式。
+// 使用 Type 的成员获取有关类型声明的信息。
+// 有关类型的成员（如构造方法、方法、字段、属性和类的事件）
+int a = 42;
+Type type = a.GetType();
+Type type = typeof(int);
+Type type3 = Type.GetType("System.Int32");// 类的名字，类名必须包含命名空间
+type.Assembly;
+// 获取一系列成员
+MemberInfo[] infos = type.GetMembers();
+ConstructorInfo[] ctors = t.GetConstructors(); // 获取构造函数
+ConstructorInfo info = t.GetConstructor(new Type[0]); // 获取无参构造
+Test my_test = info.Invoke(null) as Test; // 无参构造传null
+ConstructorInfo info2 = t.GetConstructor(new Type[]{typeof(int)}); // 获取无参构造
+my_test = info2.Invoke(new object[]{2});
+FiledInfo[] fieldInfos = t.GetFields();
+FiledInfo infoJ = t.GetField("j");
+infoJ.GetValue(对象);
+infoJ.SetValue(对象, value);
+MethodInfo subStr = strType.GetMethod("Substring", new Type[] { typeof(int), typeof(int) });
+subStr.Invoke(str_object, new object[]{1, 2});
+// 反射获取和设置对象的值。
+```
 
 ### 特性
