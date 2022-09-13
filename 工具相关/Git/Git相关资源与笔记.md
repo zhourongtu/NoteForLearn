@@ -73,9 +73,21 @@ Git只关心文件数据的整体是否发生变化，而大多数其他系统�
 	- 自动补全，contrib/completion 目录，会看到一个 git-completion.bash，加入.bashrc（windows自带处理）
 	- 别名：git config --global alias.br branch
 	
-# 3.依托于1，了解如何在本地增删查改
-- 增
-  - 创建init、clone。增加到暂存区add。提交commit。
+# 3.依托于1，了解如何进行增删查改，文件、分支（包括本地与远程）
+**最简单的流程是**：init、add、commit
+- 仓库的增删查改
+  - 增：本地（init）、远程（clone）、github（fork）
+  - 删：直接删除文件夹。
+- 文件在工作区和暂存区的增删查改
+	> 必须掌握git行为（用户使用命令修改）和修改行为（用户自然修改）对文件状态的影响、文件所处工作区的移动方式。
+  - 增：add
+  - 删：rm、rm --cached
+  - 查：diff
+  - 改：restore、restore --staged、reset、checkout
+    - restore、restore --staged：
+    - reset：
+    - checkout：
+	> 必须掌握改动的原理
 - 删
   - 移除暂存区git rm、取消跟踪git rm --cached、checkout、reset
   > https://www.cnblogs.com/kongbursi-2292702937/p/15020513.html  
@@ -99,6 +111,10 @@ Git只关心文件数据的整体是否发生变化，而大多数其他系统�
 
 - 通用标记
   - --cached：暂存区相关处理
+
+# 4.依托于3，如何进行分支开发
+
+# 5.Git提供的便捷功能
 
 ## 3.使用Git的远程仓库，以及对应的标签功能
 ```
