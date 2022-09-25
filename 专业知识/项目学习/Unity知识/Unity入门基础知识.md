@@ -78,7 +78,7 @@
 
 ## Unity的重要组件和API
 - GameObject
-> 增删查（static、成员变量）改（成员方法）系列
+  > 增删查（static、成员变量）改（成员方法）系列
   - 成员变量（this.gameObject.xxx)
     - .name(可改)、.activeSelf、.isStatic、.layer、.tag(字符串)、.transform
   - 静态方法（点进去看，搜public static，进一步再查看Unity的Object）
@@ -104,4 +104,26 @@
       - 广播或者消息，让别人或者自己 执行某个行为 SendMessage("func_name")（使用反射）
       - BroadcastMessage.. 自己和子对象
       - SendMessageUpwards 自己和父对象
-
+- Time
+  - 时间相关内容 主要 用于游戏中参与位移、记时、时间暂停等。
+  - 1.时间缩放比例（可以查看static变量）
+    - Time.timescale = 0
+    - Time.timescale = 1
+    - Time.timescale = 2
+    - 影响相关时间
+  - 2.帧间隔时间：最近的一帧用了多长时间（秒）
+    > 主要用于计算位移，路程 = 时间*速度
+    - Time.deltaTime
+    - Time.unscaledDeltaTime
+    > 帧率高CPU压力大等
+  - 3.游戏开始到现在的时间
+    > 它主要用来计时 单机游戏中计时间（网络游戏使用服务器时间）
+    - Time.time
+    - Time.unscaledTime
+  - 4.物理帧时间
+    - Time.fixedTDeltaTime
+    - Time.fixedUnscaledDeltaTime
+  - 5.帧数
+    > 从开始到现在游戏跑了多少帧（次循环）
+    - Time.frameCount
+  - 物理间隔时间设置：edit、project setting、time部分
