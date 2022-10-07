@@ -1,5 +1,6 @@
 **Git相关**  
 参考资料：  
+https://www.jianshu.com/p/2d74a6f41d07
 Git中文开发手册 https://www.php.cn/manual/view/35002.html  
 《Pro Git》  
 数据模型 https://eagain.net/articles/git-for-computer-scientists/
