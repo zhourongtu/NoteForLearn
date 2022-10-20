@@ -1,0 +1,17 @@
+[core]
+	editor = \"F:\\Tools_Software\\Microsoft VS Code\\bin\\code\" --wait
+	longpaths = true
+	quotepath = false
+[user]
+	email = zhourongtu@qq.com
+	name = qiluocao
+[alias]
+	st = status
+	br = branch
+	lg = log --oneline --decorate --graph --all
+	last = log -1 HEAD
+	co = checkout
+[credential "https://gitee.com"]
+	provider = generic
+[diff]
+	tool = vimdiff
