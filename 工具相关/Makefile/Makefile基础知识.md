@@ -213,4 +213,79 @@ targets: prerequisites
     endif
     ```
 
+**函数**
+- 第一个函数（替换文本）
+  ``` Makefile
+  comma := ,
+  empty:=
+  space := $(empty) $(empty)
+  foo := a b c
+  bar := $(subst $(space),$(comma),$(foo))
+
+  all: 
+    @echo $(bar)
+  ```
+- 模式替换文本
+  - `$(patsubst pattern,replacement,text)`
+  - 速记方式1：`$(text:pattern=replacement)`，去掉了`patsubst`
+  - 速记方式2（尾缀）：可以去掉`%`，`$(text:suffix=replacement)`
+- 遍历函数
+  - `$(foreach var,list,text)`
+- if函数
+  - 判断第一个参数是不是空
+  ``` Makefile
+  foo := $(if this-is-not-empty,then!,else!)
+  empty :=
+  bar := $(if $(empty),then!,else!)
+
+  all:
+    @echo $(foo)
+    @echo $(bar)
+  ```
+- 调用函数
+  - 通过定义一个小函数，使用参数做这样的替换。
+  ``` Makefile
+  sweet_new_fn = Variable Name: $(0) First: $(1) Second: $(2) Empty Variable: $(3)
+
+  all:
+    # Outputs "Variable Name: sweet_new_fn First: go Second: tigers Empty Variable:"
+    @echo $(call sweet_new_fn, go, tigers)
+  ```
+- Shell函数
+  - 调用shell，使用空格替换新行。
+  ``` Makefile
+  all: 
+	@echo $(shell ls -la) # Very ugly because the newlines are gone!
+  ```
+
 **其他特性**
+- 包含makefile
+  ``` Makefile
+  include filenames
+  ```
+- 相对路径：`vpath <pattern> <directories, space/colon separated>`
+  - pattern中可以有`%`，匹配0或多个字符。
+  ``` Makefile
+  vpath %.h ../headers ../other-directory
+
+  some_binary: ../headers blah.h
+    touch some_binary
+
+  ../headers:
+    mkdir ../headers
+
+  blah.h:
+    touch ../headers/blah.h
+
+  clean:
+    rm -rf ../headers
+    rm -f some_binary
+  ```
+- 多行，使用`\`
+- 假目标，使目标不和文件实际联系起来。
+  - `.phony`
+  ``` Makefile
+  .PHONY: clean
+  ```
+- `DELETE_ON_ERROR`标记
+  - 当错误发生时，删除规则对应的文件
