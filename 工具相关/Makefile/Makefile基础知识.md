@@ -96,3 +96,121 @@ targets: prerequisites
   blah::
     echo "hello again"
   ```
+
+**命令和执行**
+- 打印与沉默：`命令前使用@`，或者make使用`-s`参数
+- 每行的命令都在`新的 shell` 中运行（或者至少效果是这样的）
+  - 同一行的两个命令可以有影响。
+  - 不同行没有影响。
+- 默认Shell
+  ``` Makefile
+  SHELL=/bin/bash
+
+  cool:
+    echo "Hello from bash"
+  ```
+- 得到`$`符号，使用`$$`
+  - 这也是使用shell变量的一种方式。
+- 错误处理
+  - `-k`参数：运行，哪怕有错误。
+  - `-`在一个命令前，可以抑制错误
+- 取消处理
+  - `ctrl+c`
+- 递归使用make
+  - `$(MAKE)`
+  - 该标记可以传递make的标记，并且不会受到它影响。
+- `export`、环境、递归make
+  - `export`：直接使用变量，将该变量设为环境，所有shell command都能使用它。
+- `.EXPORT_ALL_VARIABLES` exports all variables for you.
+  ``` Makefile
+  .EXPORT_ALL_VARIABLES:
+  ...
+  ```
+- make的参数
+  - 参考资料：https://www.gnu.org/software/make/manual/make.html#Options-Summary
+  - 多目标make，按顺序。`make clean run test`
+
+**变量第二谈**
+- 变量的两种类型
+  - 递归式(`=`)：仅仅当变量被使用的时候才被寻找，而不是定义的时候。
+  - 简单扩展(`:=`)：只有那些到目前为止被定义的才能得到扩展。
+    - 可以利用后者实现：append形式-->后一个变量依赖前一个变量的值。
+    - 使用递归式则会循环错误。
+  - 变量的基本定义
+    - `?=`设置还未设置的变量。
+    - 所有未定义的变量是空字符串
+    - 使用 += 可以实现append
+    - 字符串替换、文本函数、文件名函数等都有一些控制字符串的方式。
+- 命令行参数 和 重写（覆盖）
+  - 使用make，如`make option_one=hi`会修改`option_onw`的变量值
+  - 使用`override`可以保护对应变量不被修改。
+  - 可以通过`override x += -g`再进一步修改变量。
+- 一系列的命令与`define`
+  - 注意：`define`不是函数，但是看起来很像。
+  - 注意：`define`和`endef`创建了一个分配给命令列表的变量。
+    - 每一个运行都是单独的shell，和`;`隔开的表现并不一致。
+- 变量可以为特定的目标赋值（或者pattern-target）
+  ``` Makefile
+  all: one = cool
+  # %.c: one = cool
+
+  all: 
+    echo one is defined: $(one)
+
+  other:
+    echo one is nothing: $(one)
+  ```
+
+**Makefile的条件**
+- if/else条件
+  ``` Makefile
+  foo = ok
+
+  all:
+  ifeq ($(foo), ok)
+    echo "foo equals ok"
+  else
+    echo "nope"
+  endif
+  ```
+- 判空
+  ``` Makefile
+  nullstring =
+  foo = $(nullstring) # end of line; there is a space here
+
+  all:
+  ifeq ($(strip $(foo)),)
+    echo "foo is empty after being stripped"
+  endif
+  ifeq ($(nullstring),)
+    echo "nullstring doesn't even have spaces"
+  endif
+  ```
+- 变量定义
+  ``` Makefile
+  bar =
+  foo = $(bar)
+
+  all:
+  ifdef foo
+    echo "foo is defined"
+  endif
+  ifndef bar
+    echo "but bar is not"
+  endif
+  ```
+- `makeflag`的知识
+  - `findstring`和`MAKEFLAGS`的例子
+  - make -i
+    ``` Makefile
+    bar =
+    foo = $(bar)
+
+    all:
+    # Search for the "-i" flag. MAKEFLAGS is just a list of single characters, one per flag. So look for "i" in this case.
+    ifneq (,$(findstring i, $(MAKEFLAGS)))
+      echo "i was passed to MAKEFLAGS"
+    endif
+    ```
+
+**其他特性**
