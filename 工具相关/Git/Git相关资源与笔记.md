@@ -153,3 +153,7 @@ http://t.zoukankan.com/dazhan-p-9289667.html
   > Git 将任何非ascii字符使用引号包裹，可以使用这个操作取消这个默认操作。
 - 2.diff文件的对应乱码处理问题
   - https://stackoverflow.com/questions/777949/can-i-make-git-recognize-a-utf-16-file-as-text
+- 3.批量重命名git的文件
+  ``` git
+  for i in *.md; do git mv $i "重构相关书籍/"; done
+  ```
