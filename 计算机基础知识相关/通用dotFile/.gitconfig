@@ -11,6 +11,7 @@
 	lg = log --oneline --decorate --graph --all
 	last = log -1 HEAD
 	co = checkout
+	diffs = diff --staged
 [credential "https://gitee.com"]
 	provider = generic
 [diff]
