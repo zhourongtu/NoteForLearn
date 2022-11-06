@@ -1,0 +1,148 @@
+{
+  "main": {
+    "id": "036ca8aba7151e2e",
+    "type": "split",
+    "children": [
+      {
+        "id": "49d2f1898c966d50",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "53788cfc08d561aa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "工具相关/笔记相关/obsidian学习.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e091ce3cf82e0a0d",
+    "type": "split",
+    "children": [
+      {
+        "id": "f5271f1b611e8f57",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ed517c57d2bc1864",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "2f2895b1173812ef",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:##",
+                "matchingCase": false,
+                "explainSearch": true,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "167153fdb77d77f3",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "a11823c02cf80d2d",
+    "type": "split",
+    "children": [
+      {
+        "id": "939b9fc1f22b6395",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "54b9689f80d4630c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "工具相关/笔记相关/obsidian学习.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9488d0d6b30cabb1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "工具相关/笔记相关/obsidian学习.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c1c602cea79ba000",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "4756e59793ca67ab",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "工具相关/笔记相关/obsidian学习.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "2f2895b1173812ef",
+  "lastOpenFiles": [
+    "书籍相关/重构相关书籍/《重构》.md",
+    "书籍相关/重构相关书籍/《设计模式》.md",
+    "工具相关/笔记相关/obsidian学习.md",
+    "1.1 哪里去使用搜索功能.md",
+    "2022-11-06.md"
+  ]
+}
