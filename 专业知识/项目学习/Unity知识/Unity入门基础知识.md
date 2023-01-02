@@ -115,7 +115,7 @@
     > 主要用于计算位移，路程 = 时间*速度
     - Time.deltaTime
     - Time.unscaledDeltaTime
-    > 帧率高CPU压力大等
+    > 帧率高会使CPU压力大等
   - 3.游戏开始到现在的时间
     > 它主要用来计时 单机游戏中计时间（网络游戏使用服务器时间）
     - Time.time
@@ -128,5 +128,13 @@
     - Time.frameCount
   - 物理间隔时间设置：edit、project setting、time部分
 - Transform
-  - Vector3 与 位置
+  - 主要用来做什么？游戏对象（GameObject）的**位移、旋转、缩放、父子关系、坐标转换**等都由它处理。 （极其重要⭐⭐⭐⭐⭐）
+  - Vector3：表示三维坐标中的一个点或者方向（向量）。
+  - **世界**坐标系：.position
+    - Inspector显示：相对坐标位置，localPosition
+    - 位置（position）只能整体改变
+    - 注意：可以先取出来Vector3再赋值，再赋回去。
+  - 对象朝向：.forward、.back、.up、down、right、left
+    - 从transform点出来的
+  - **位移**：方向、速度、时间
   - 角度 和 旋转
