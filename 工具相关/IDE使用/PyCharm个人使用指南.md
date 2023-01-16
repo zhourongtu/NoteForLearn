@@ -27,9 +27,9 @@
 ## 导航功能
 - Ctrl + Shift + F12 只显示编辑器
 - Alt + F12 控制terminal显隐
-- Ctrl + Tab 控制窗口切换。
+- Ctrl + Tab 控制窗口切换。⭐⭐⭐⭐⭐
 - F12 回到上一个窗口（可能是左边、下面）
-- IDE外观：Crrl+`
+- IDE外观：Ctrl+`
 - 导航栏 Alt + Home
 
 # 重构工具
