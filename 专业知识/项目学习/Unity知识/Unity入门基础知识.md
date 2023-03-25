@@ -137,4 +137,6 @@
   - 对象朝向：.forward、.back、.up、down、right、left
     - 从transform点出来的
   - **位移**：方向、速度、时间
+    - s = vt
   - 角度 和 旋转
+
