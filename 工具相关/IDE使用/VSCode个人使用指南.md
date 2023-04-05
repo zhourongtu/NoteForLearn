@@ -1,7 +1,7 @@
 
 # 编辑器
 
-- 快速切换页签
-  - Ctrl+PageUp或者PageDown
-  - Ctrl + Tab
 
+# 陈斌教程
+- 1. 将vscode变成vim。
+  - why：
