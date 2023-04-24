@@ -24,3 +24,29 @@
   1. Unity支持的图片格式（jpg、png、tga）
 
 # 3.
+
+# NGUI相关知识点
+## 1.DrawCall
+- 知识点一 DrawCall的概念
+  - DrawCall 概念
+    就是CPU（处理器）准备好渲染数据（顶点、纹理、法线、Shader等等）后，告知GPU（图形处理器-显卡）开始渲染（将命令放入命令缓冲区）的**命令**。
+    
+    简单来说：一次DrawCall就是 CPU准备好渲染数据通知 GPU渲染的这个过程。
+    
+    如果游戏中DrawCall数量较高会影响CPU的效率，最直接的感受就是游戏会卡顿
+
+    举例：10M大文件与10000个合起来的10M大文件拷贝。
+
+    渲染过程和其例子比较相近，每次DrawCall，CPU都需要准备很多数据发给GPU，那么如果DrawCall越多，那么额外开销就越大，其实GPU的渲染效率比较强大，影响渲染效率的往往都是因为CPU提交命令的速度。如果DrawCall太多，CPU就会把大量时间花在提交DrawCall上，造成CPU过载，导致卡顿。
+- 知识点二 如何降低DrawCall的数量
+  - 在UI层面上，小图合大图-->即多个小DrawCall变成一次大的DrawCall
+- 知识点三 制作UI时降低DrawCall的机器奥
+  1. 通过NGUI Panel上提供的DrawCall（DrawCallTool）查看工具
+  2. 注意不同图集之间的层级关系（会影响DrawCall）
+    - 例子：一个图集的两张图，中间插入另外一个图集的图片-->提高DrawCall的数量。
+  3. 注意Label的层级关系（与2同）
+    - 文字的图集放在上面。
+  > 通用资源可以多打几个图集（根据具体情况，DrawCall与内存）。
+
+- 其他
+  - UGUI可以在图片不叠加的情况下，减少DrawCall
