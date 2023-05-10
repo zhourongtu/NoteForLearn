@@ -12,3 +12,9 @@
 
 
 
+
+
+# 一些小知识点
+
+### 1.Python default value is mutable
+  - 当你说“Python default value is mutable”时，意思是Python函数参数的默认值是可变的。这意味着，如果一个可变对象（比如列表或字典）被用作默认值，并在函数内部被修改，这些更改将在后续调用同一函数时保留。
