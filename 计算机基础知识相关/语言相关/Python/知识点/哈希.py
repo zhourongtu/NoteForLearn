@@ -26,7 +26,7 @@ h1.hexdigest()
 # 使用哈希，进行密码加密，判断。
 
 
-file_path = ''
+file_path = 'GC与弱引用.md'
 
 with open(file_path, 'rb') as f:
     m1 = hashlib.md5(f.read())
@@ -52,8 +52,8 @@ with open(file_path, 'rb') as f:
 # 加盐
 pwd = 'abcdee'
 m2 = hashlib.md5()
-m2.update(pwd[:2])
-m2.update('ceshi')
-m2.update(pwd[2:4])
-m2.update('ceshi2')
-m2.update(pwd[4:])
+m2.update(pwd[:2].encode('utf-8'))
+m2.update('ceshi'.encode('utf-8'))
+m2.update(pwd[2:4].encode('utf-8'))
+m2.update('ceshi2'.encode('utf-8'))
+m2.update(pwd[4:].encode('utf-8'))
