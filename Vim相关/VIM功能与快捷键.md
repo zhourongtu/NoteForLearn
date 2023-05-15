@@ -1,5 +1,5 @@
 # Vim学习
-
+- 
 参考资料：vimtutor zh
 
 ## 实用技巧
