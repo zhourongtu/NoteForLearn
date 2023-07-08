@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+import os
+import sys
+current_file_directory = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_file_directory)
+import calculate_infix_expression
 from collections import deque
 import heapq
 import re
@@ -173,6 +178,13 @@ class Parser(object):
 class Runner(object):
     def __init__(self) -> None:
         self.commands = []
+        self.vm = None
+        self.constants = []
+    
+    def CalangRuner(self, vm):
+        self.vm = vm
+        self.constants = []
+        self.commands = []
 
 
 class VM(object):
@@ -219,9 +231,15 @@ REG2:   操作寄存器2
 """
 1. 中缀表达式计算
 2. 表达式计算框架
-
+    编译-->值（表达式）-->-->声明（常量池）、函数（调用函数）-->生成指令-->执行指令
+mermaid
+graph 
+    
+操作栈、符号栈
 """
 
 if __name__ == "__main__":
     parser = Parser('test_file.txt')
     parser.parse()
+    print('calculate_infix_expression: {}'.format(calculate_infix_expression.calculate('1 + 1')))
+
