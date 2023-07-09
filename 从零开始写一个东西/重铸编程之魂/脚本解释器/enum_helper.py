@@ -14,6 +14,6 @@ class ExpressionType(object):
     UNKNOWN = 3 # 未知类型
 
 
-class ExpressionValueType(object):
+class ValueType(object):
     VALUE = 1
     EXPRESSION = 2

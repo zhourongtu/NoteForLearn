@@ -4,18 +4,11 @@ import sys
 current_file_directory = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(current_file_directory)
 
-from enum_helper import ExpressionType, ExpressionValueType
-from VM import VM, Commands
+from enum_helper import ExpressionType, ValueType
+from VM import VM, Commands, Constants
 from collections import deque
-from Expression import Expression
+from Expression import Expression, Function, FunctionFactory
 from Variable import Variable
-
-
-class Constants(object):
-    EAX_IDX = 1
-    EBX_IDX = 2
-    ECX_IDX = 3
-    EDX_IDX = 4
 
 
 
@@ -42,25 +35,26 @@ class CalangRuner(Runner):
         self.constants = {}
         self.commands = []
         self.variables = variables # {}
+        self.vm.setConstants(self.constants)
 
     def translate(self, expression: Expression):
-        value_type = expression.getValueType() # type: ExpressionValueType
-        if value_type == ExpressionValueType.VALUE:
+        value_type = expression.getValueType() # type: ValueType
+        if value_type == ValueType.VALUE:
             expression_type = expression.getType()
             if expression_type == ExpressionType.VAR:
-                self.constants[expression.getName()] = int(expression.getIndex())
-                self.commands.append(Commands.PUSH | expression.getIndex() << 8 | 0xFFFF0000)
+                self.constants[expression.getIndex()] = int(expression.getValue())
+                self.vm.stackPush(self.getVariableValue(expression.getName())) # 栈顶存储了变量的值（是a、b的）
             elif expression_type == ExpressionType.FUNC:
                 pass
                 # TODO: 执行函数
-        elif value_type == ExpressionValueType.EXPRESSION:
+        elif value_type == ValueType.EXPRESSION:
             expression_type = expression.getType()
             if expression_type == ExpressionType.VAR:
                 self.parseExpression(expression.getValue())
-                self.constants[expression.getIndex()] = int(self.vm.eax)
-                self.commands.append(Commands.PUSH | expression.getIndex() << 8 | 0xFFFF0000)
+                self.variables[expression.getName()].setValue(self.vm.registers[Constants.EAX_IDX])
+                self.constants[expression.getIndex()] = self.vm.registers[Constants.EAX_IDX]
             elif expression_type == ExpressionType.FUNC:
-                pass
+                self.parseFunction(expression)
                 # TODO: 执行函数
 
         self.vm.run(self.commands)
@@ -74,20 +68,40 @@ class CalangRuner(Runner):
             if entry in SYMBOLS:
                 symbols.append(entry)
             else:
-                self.vm.stackPush(self.getVariableIndex(entry))
+                self.vm.stackPush(self.getVariableValue(entry)) # 存储临时变量
 
         while symbols:
             symbol = symbols.pop()
             self.calc(symbol)
 
-        print(self.vm.getStack())
-        print(symbols)
+        # print(self.vm.getStack())
+        # print(symbols)
+
+    def parseFunction(self, expression: Expression):
+        function = expression.getValue() # type: Function
+        if len(function.getValues()) >= function.getNArgs():
+            values = function.getValues()
+            for i in range(len(values)):
+                self.parseExpression(values[i])
+                values[i] = self.vm.stackPop()
+        function_factory = FunctionFactory.instance()
+        function_factory.run(function)
 
     def getVariableIndex(self, entry):
         variable = self.variables.get(entry) # type: Variable
         if not variable:
             raise Exception('变量未定义')
         return variable.getIndex()
+    
+    def getVariableValue(self, name):
+        import re
+        if re.match(Constants.VARIALBLE_PATTERN, name):
+            variable = self.variables.get(name) # type: Variable
+            if not variable:
+                raise Exception('变量未定义')
+            return int(variable.getValue())
+        else:
+            return int(name)
 
     # 中缀表达式的改版
     def pushSymbol(self, symbols: list, entry):
@@ -123,27 +137,17 @@ class CalangRuner(Runner):
     def calc(self, symbol):
         self.commands.append(Commands.POP | Constants.EBX_IDX << 16 | 0xFF00FF00)
         self.commands.append(Commands.POP | Constants.EDX_IDX << 16 | 0xFF00FF00)
-        
+        self.vm.run(self.commands)
+        self.commands.append(Commands.MOV | self.vm.registers[Constants.EDX_IDX] << 8 | Constants.EAX_IDX << 16 | 0xFF000000)
         if symbol == '+':
-            # 含义，将edx指向的变量，移动到eax寄存器中
-            self.commands.append(Commands.MOV | self.vm.edx << 8 | Constants.EAX_IDX << 16 | 0xFF000000)
-            # 加到eax当中，再存储
-            self.commands.append(Commands.ADD | self.vm.ebx << 8 | 0xFF000000)
-            self.commands.append(Commands.PUSH | Constants.EAX_IDX << 16 | 0xFF000000)
+            self.commands.append(Commands.ADD | self.vm.registers[Constants.EBX_IDX] << 8 | 0xFF000000)
         elif symbol == '-':
-            self.commands.append(Commands.MOV | self.vm.edx << 8 | Constants.EAX_IDX << 16 | 0xFF000000)
-            self.commands.append(Commands.SUB | self.vm.ebx << 8 | 0xFF000000)
-            self.commands.append(Commands.PUSH | Constants.EAX_IDX << 16 | 0xFF000000)
+            self.commands.append(Commands.SUB | self.vm.registers[Constants.EBX_IDX] << 8 | 0xFF000000)
         elif symbol == '*':
-            self.commands.append(Commands.MOV | self.vm.edx << 8 | Constants.EAX_IDX << 16 | 0xFF000000)
-            self.commands.append(Commands.MUL | self.vm.ebx << 8 | 0xFF000000)
-            self.commands.append(Commands.PUSH | Constants.EAX_IDX << 16 | 0xFF000000)
+            self.commands.append(Commands.MUL | self.vm.registers[Constants.EBX_IDX] << 8 | 0xFF000000)
         elif symbol == '/':
-            self.commands.append(Commands.MOV | self.vm.edx << 8 | Constants.EAX_IDX << 16 | 0xFF000000)
-            self.commands.append(Commands.DIV | self.vm.ebx << 8 | 0xFF000000)
-            self.commands.append(Commands.PUSH | Constants.EAX_IDX << 16 | 0xFF000000)
+            self.commands.append(Commands.DIV | self.vm.registers[Constants.EBX_IDX] << 8 | 0xFF000000)
         elif symbol == '%':
-            self.commands.append(Commands.MOV | self.vm.edx << 8 | Constants.EAX_IDX << 16 | 0xFF000000)
-            self.commands.append(Commands.SUR | self.vm.ebx << 8 | 0xFF000000)
-            self.commands.append(Commands.PUSH | Constants.EAX_IDX << 16 | 0xFF000000)
-
+            self.commands.append(Commands.SUR | self.vm.registers[Constants.EBX_IDX] << 8 | 0xFF000000)
+        self.commands.append(Commands.PUSH | Constants.EAX_IDX << 16 | 0xFF000000)
+        self.vm.run(self.commands)

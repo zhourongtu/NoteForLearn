@@ -2,6 +2,16 @@
 from collections import deque
 
 
+class Constants(object):
+    FUNCTION_PATTERN = '^[A-Za-z_]\w*\(.*\)'
+    VARIALBLE_PATTERN = '^[A-Za-z_]\w*'
+    STRING_PATTERN = '^\"[^\"]*\"$'
+
+    EAX_IDX = 0
+    EBX_IDX = 1
+    ECX_IDX = 2
+    EDX_IDX = 3
+
 
 class Commands(object):
     PUSH = 0x01
@@ -18,10 +28,8 @@ class VM(object):
     def __init__(self) -> None:
         # 通用寄存器
         # eax用于存放返回值，ebx、edx用于存放临时变量的索引
-        self.eax = 0
-        self.ebx = 0
-        self.ecx = 0
-        self.edx = 0
+        # eax、ebx、ecx、edx
+        self.registers = [0] * 4
         # eip寄存器
         self.eip = 0
         # 栈寄存器
@@ -34,6 +42,14 @@ class VM(object):
         # 堆空间
         self.heap = [] # heapq操作它，最小堆
 
+    # 虚拟机常量池
+    def setConstants(self, constants):
+        self._constants = constants
+
+    def cleanVariables(self, variables):
+        variables.clear()
+        self._constants.clear()
+
     def getStack(self):
         return self.stack
 
@@ -41,6 +57,11 @@ class VM(object):
     def stackPush(self, value):
         self.stack.append(value)
         self.esp += 1
+
+    def stackPop(self):
+        result = self.stack.pop()
+        self.esp -= 1
+        return result
 
     def getHeapObject(self, index):
         return self.heap[index]
@@ -81,16 +102,53 @@ class VM(object):
         pass
 
     def cmdPush(self, command):
-        pass
+        # push：将值放在栈顶
+        register_index = command & 0x00FF0000
+        register_index = register_index >> 16
+        self.stackPush(self.registers[register_index])
 
     def cmdPop(self, command):
-        pass
+        # pop是pop到寄存器中
+        register_index = command & 0x00FF0000
+        register_index = register_index >> 16
+        self.registers[register_index] = self.stack.pop()
 
     def cmdMove(self, command):
-        pass
+        # move 是将某个值放到寄存器中
+        register_index = command & 0x00FF0000
+        register_index = register_index >> 16
+
+        # 立即数？
+        local_param_index = command & 0xFF00
+        local_param_index = local_param_index >> 8
+        
+        # TODO: 这里按照立即数先处理了
+        # if local_param_index in self._constants:
+        #     param_value = self._constants[local_param_index]
+
+        # param_value = self.stack[local_param_index] if len(self.stack) > local_param_index else local_param_index
+        
+        # 先采用立即数
+        param_value = local_param_index
+
+        self.registers[register_index] = param_value
 
     def cmdAdd(self, command):
-        pass
+        # add是将特定内存中的值，加到eax寄存器中
+        local_param_index = command & 0xFF00
+        local_param_index = local_param_index >> 8
+
+        # TODO: 这里按照立即数先处理了
+        # if local_param_index in self._constants:
+        #     param_value = self._constants[local_param_index]
+
+        # param_value = self.stack[local_param_index] if len(self.stack) > local_param_index else local_param_index
+        
+        param_value = local_param_index
+
+        eax_value = self.registers[Constants.EAX_IDX]
+        ret_value = eax_value + param_value
+        self.registers[Constants.EAX_IDX] = ret_value
 
     def cmdSub(self, command):
         pass
@@ -108,6 +166,6 @@ class CalangVm(VM):
     def __init__(self, heapSize):
         super(CalangVm, self).__init__()
         self.eip = 0
-        self.eax, self.ebx, self.ecx, self.edx = [1] * 4
+        self.registers = [0] * 4
         self.stack = deque()
         self.heap = []

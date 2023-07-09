@@ -61,7 +61,8 @@ def calculate(expression):
     return stack_operands[0] if stack_operands else None
 
 
-# 测试
-expression = "(3 + 4) * (2 - 5) / 2"
-result = calculate(expression)
-print(result)  # 输出: -6.0
+if __name__ == "__main__":
+    # 测试
+    expression = "(3 + 4) * (2 - 5) / 2"
+    result = calculate(expression)
+    print(result)  # 输出: -6.0

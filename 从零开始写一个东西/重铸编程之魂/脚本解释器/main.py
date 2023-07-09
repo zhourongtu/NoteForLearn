@@ -26,15 +26,15 @@ class Parser(object):
 
 """
 1. 流程设计
-读取脚本文件（Parser）-->读取块-->表达式（函数）-->创建虚拟机-->计算表达式，计算函数-->接受结果(Runner)
+读取脚本文件(Parser)-->读取块-->表达式（函数）-->创建虚拟机-->计算表达式，计算函数-->接受结果(Runner)
 
 2. 指令规划:
 0~7、8~15、16~23、24~31
 CMD、IVAL、REG1、REG2
 
-CMD：   指令机器码
+CMD:   指令机器码
 IVAL:   局部变量索引表
-REG1：  操作寄存器1
+REG1:  操作寄存器1
 REG2:   操作寄存器2
 
 3. 指令执行过程
@@ -47,5 +47,5 @@ REG2:   操作寄存器2
 if __name__ == "__main__":
     parser = Parser('test_file.txt')
     parser.parse()
-    print('calculate_infix_expression: {}'.format(calculate_infix_expression.calculate('1 + 1')))
+    # print('calculate_infix_expression: {}'.format(calculate_infix_expression.calculate('1 + 1')))
 
