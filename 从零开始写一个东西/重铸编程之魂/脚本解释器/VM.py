@@ -151,16 +151,72 @@ class VM(object):
         self.registers[Constants.EAX_IDX] = ret_value
 
     def cmdSub(self, command):
-        pass
+        # add是将特定内存中的值，加到eax寄存器中
+        local_param_index = command & 0xFF00
+        local_param_index = local_param_index >> 8
+
+        # TODO: 这里按照立即数先处理了
+        # if local_param_index in self._constants:
+        #     param_value = self._constants[local_param_index]
+
+        # param_value = self.stack[local_param_index] if len(self.stack) > local_param_index else local_param_index
+
+        param_value = local_param_index
+
+        eax_value = self.registers[Constants.EAX_IDX]
+        ret_value = eax_value - param_value
+        self.registers[Constants.EAX_IDX] = ret_value
 
     def cmdMul(self, command):
-        pass
+        # add是将特定内存中的值，加到eax寄存器中
+        local_param_index = command & 0xFF00
+        local_param_index = local_param_index >> 8
+
+        # TODO: 这里按照立即数先处理了
+        # if local_param_index in self._constants:
+        #     param_value = self._constants[local_param_index]
+
+        # param_value = self.stack[local_param_index] if len(self.stack) > local_param_index else local_param_index
+
+        param_value = local_param_index
+
+        eax_value = self.registers[Constants.EAX_IDX]
+        ret_value = eax_value * param_value
+        self.registers[Constants.EAX_IDX] = ret_value
 
     def cmdDiv(self, command):
-        pass
+        # add是将特定内存中的值，加到eax寄存器中
+        local_param_index = command & 0xFF00
+        local_param_index = local_param_index >> 8
+
+        # TODO: 这里按照立即数先处理了
+        # if local_param_index in self._constants:
+        #     param_value = self._constants[local_param_index]
+
+        # param_value = self.stack[local_param_index] if len(self.stack) > local_param_index else local_param_index
+
+        param_value = local_param_index
+
+        eax_value = self.registers[Constants.EAX_IDX]
+        ret_value = eax_value / param_value
+        self.registers[Constants.EAX_IDX] = ret_value
 
     def cmdSur(self, command):
-        pass
+        # add是将特定内存中的值，加到eax寄存器中
+        local_param_index = command & 0xFF00
+        local_param_index = local_param_index >> 8
+
+        # TODO: 这里按照立即数先处理了
+        # if local_param_index in self._constants:
+        #     param_value = self._constants[local_param_index]
+
+        # param_value = self.stack[local_param_index] if len(self.stack) > local_param_index else local_param_index
+
+        param_value = local_param_index
+
+        eax_value = self.registers[Constants.EAX_IDX]
+        ret_value = eax_value % param_value
+        self.registers[Constants.EAX_IDX] = ret_value
 
 class CalangVm(VM):
     def __init__(self, heapSize):

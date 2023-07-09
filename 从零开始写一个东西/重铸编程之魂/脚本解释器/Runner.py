@@ -66,7 +66,7 @@ class CalangRuner(Runner):
         SYMBOLS = ['+', '-', '*', '/', '%', '(', ')']
         for entry in entries:
             if entry in SYMBOLS:
-                symbols.append(entry)
+                self.pushSymbol(symbols, entry)
             else:
                 self.vm.stackPush(self.getVariableValue(entry)) # 存储临时变量
 
@@ -119,10 +119,10 @@ class CalangRuner(Runner):
             return
         
         if entry == ')':
-            symbol = symbols.pop(-1)
+            symbol = symbols.pop()
             while symbol != '(':
                 self.calc(symbol)
-                symbol = symbols.pop(-1)
+                symbol = symbols.pop()
             return
         
         # 符号优先级高先入栈
@@ -130,9 +130,16 @@ class CalangRuner(Runner):
         if symbol_priority[entry] > symbol_priority[peek_one]:
             symbols.append(entry)
         else:
-            symbol = symbols.pop(-1)
-            self.calc(symbol)
+            while symbols:
+                # 把优先级高的先算了
+                peek_one = symbols[-1]
+                if symbol_priority[peek_one] >= symbol_priority[entry]:
+                    symbol = symbols.pop()
+                    self.calc(symbol)
+                else:
+                    break
             self.pushSymbol(symbols, entry)
+
 
     def calc(self, symbol):
         self.commands.append(Commands.POP | Constants.EBX_IDX << 16 | 0xFF00FF00)
