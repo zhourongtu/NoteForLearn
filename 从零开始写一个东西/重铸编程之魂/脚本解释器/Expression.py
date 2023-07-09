@@ -159,9 +159,9 @@ class FunctionFactory(object):
     @classmethod
     def print(self, fmt, *args):
         if len(args) == 0:
-            print(fmt)
+            print(fmt + '结果请考虑补码')
         else:
-            print(fmt.format(args))
+            print(fmt.format(args) + '结果请考虑补码')
 
     def run(self, function: Function):
         try:

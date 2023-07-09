@@ -117,6 +117,8 @@ class VM(object):
         # move 是将某个值放到寄存器中
         register_index = command & 0x00FF0000
         register_index = register_index >> 16
+        import numpy
+        register_index = numpy.int8(register_index)
 
         # 立即数？
         local_param_index = command & 0xFF00
@@ -131,7 +133,13 @@ class VM(object):
         # 先采用立即数
         param_value = local_param_index
 
-        self.registers[register_index] = param_value
+        try:
+            print('zrt_test')
+            print(register_index)
+            print(param_value)
+            self.registers[register_index] = param_value
+        except:
+            print('error')
 
     def cmdAdd(self, command):
         # add是将特定内存中的值，加到eax寄存器中
