@@ -1,0 +1,10 @@
+int a = 10
+int b = 20
+int c = a + b + 10
+int d = a + c + 2
+int s = a + ((b - 2) * 2 - c) * 3
+print(a)
+print(b)
+print(c)
+print(d)
+print(s)
