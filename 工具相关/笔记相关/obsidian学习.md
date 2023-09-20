@@ -42,3 +42,6 @@ cat
 3. 在资源管理器中显示：Ctrl+Shift+E
 
 
+# obsidian的同步策略
+https://sspai.com/post/72388
+
