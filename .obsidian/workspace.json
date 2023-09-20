@@ -4,34 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "8051b3c88e4ff3aa",
+        "id": "1af37bb86ebddb19",
         "type": "tabs",
         "children": [
           {
-            "id": "930e9329732915ae",
+            "id": "81d732c7c7e6e1fa",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "工具相关/笔记相关/Mermaid相关信息.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          }
-        ]
-      },
-      {
-        "id": "aaf488ab818cdcc4",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "9b649fb574048cff",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "工具相关/笔记相关/时序图测试案例.md",
+                "file": "工具相关/笔记相关/obsidian学习.md",
                 "mode": "source",
                 "source": false
               }
@@ -76,14 +58,6 @@
             }
           },
           {
-            "id": "167153fdb77d77f3",
-            "type": "leaf",
-            "state": {
-              "type": "starred",
-              "state": {}
-            }
-          },
-          {
             "id": "e7a8c319adfbd880",
             "type": "leaf",
             "state": {
@@ -111,14 +85,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "工具相关/笔记相关/Mermaid相关信息.md",
+                "file": "工具相关/笔记相关/obsidian学习.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           },
@@ -128,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "工具相关/笔记相关/Mermaid相关信息.md",
+                "file": "工具相关/笔记相关/obsidian学习.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -151,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "工具相关/笔记相关/Mermaid相关信息.md"
+                "file": "工具相关/笔记相关/obsidian学习.md"
               }
             }
           }
@@ -169,18 +143,24 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false
+      "command-palette:打开命令面板": false,
+      "audio-recorder:开始/结束录音": false
     }
   },
-  "active": "930e9329732915ae",
+  "active": "81d732c7c7e6e1fa",
   "lastOpenFiles": [
-    "工具相关/笔记相关/时序图测试案例.md",
     "工具相关/笔记相关/Mermaid相关信息.md",
-    "从零开始写一个东西/重铸编程之魂/脚本解释器/编写脚本解释器.md",
-    "专业知识/项目学习/Unity知识/Unity入门/脚本基本规则图.png",
+    "未命名.md",
+    "未命名 1.md",
+    "日记/2023-09-20.md",
+    "日记",
+    "工具相关/笔记相关/时序图.md",
     "工具相关/笔记相关/obsidian学习.md",
-    "工具相关/笔记相关/康奈尔笔记法.md",
     "工具相关/笔记相关/Web笔记编写.md",
+    "未命名.canvas",
+    "从零开始写一个东西/重铸编程之魂/脚本解释器/编写脚本解释器.md",
+    "工具相关/笔记相关/康奈尔笔记法.md",
+    "专业知识/项目学习/Unity知识/Unity入门/脚本基本规则图.png",
     "书籍相关/重构相关书籍/《重构》.md",
     "书籍相关/重构相关书籍/《设计模式》.md",
     "1.1 哪里去使用搜索功能.md",

@@ -16,5 +16,7 @@
   "bookmarks",
   "outline",
   "word-count",
-  "file-recovery"
+  "audio-recorder",
+  "file-recovery",
+  "sync"
 ]
