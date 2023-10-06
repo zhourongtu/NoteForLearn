@@ -13,31 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "工具相关/笔记相关/康奈尔笔记法.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "902563ba809d5af3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "参考资料/1.工具参考资料清单.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bf345a2a6f362014",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "参考资料/1.工具参考资料清单.md",
+                "file": "工具相关/Makefile/Makefile基础知识.md",
                 "mode": "source",
                 "source": false
               }
@@ -109,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "工具相关/笔记相关/康奈尔笔记法.md",
+                "file": "工具相关/Makefile/Makefile基础知识.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -126,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "工具相关/笔记相关/康奈尔笔记法.md",
+                "file": "工具相关/Makefile/Makefile基础知识.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -149,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "工具相关/笔记相关/康奈尔笔记法.md"
+                "file": "工具相关/Makefile/Makefile基础知识.md"
               }
             }
           },
@@ -184,6 +160,7 @@
   "active": "ea44071adcea0bc2",
   "lastOpenFiles": [
     "参考资料/1.工具参考资料清单.md",
+    "工具相关/Makefile/Makefile基础知识.md",
     "工具相关/笔记相关/康奈尔笔记法.md",
     "工具相关/笔记相关/时序图.md",
     "工具相关/笔记相关/obsidian相关/流程图绘制.md",

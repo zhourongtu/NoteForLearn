@@ -1,4 +1,5 @@
-参考资料：https://makefiletutorial.com/
+
+![[1.工具参考资料清单#Makefile参考资料]]
 
 **Makefile的基本特征**
 - makefile的目标是一旦文件需要重新编译的情况下，进行`重新编译`，一般`依赖于文件被修改`。
