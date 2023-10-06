@@ -14,5 +14,7 @@
 	diffs = diff --staged
 [credential "https://gitee.com"]
 	provider = generic
+[credential "https://github.com"]
+	provider = generic
 [diff]
 	tool = vimdiff
