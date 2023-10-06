@@ -1,0 +1,3 @@
+
+1. dict的copy比update效率高。
+
