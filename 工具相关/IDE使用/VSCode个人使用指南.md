@@ -18,3 +18,10 @@
 ### 2.文档格式化
 - Format Document
   - json ...
+
+# VSCode 插件
+
+## Foam
+![[1.工具参考资料清单#VScode参考资料|参考资料]]
+Foam可以支持双链
+

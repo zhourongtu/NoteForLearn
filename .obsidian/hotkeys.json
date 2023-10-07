@@ -60,5 +60,23 @@
       "key": "H"
     }
   ],
-  "workspace:edit-file-title": []
+  "workspace:edit-file-title": [],
+  "workspace:new-tab": [],
+  "editor:cycle-list-checklist": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "T"
+    }
+  ],
+  "global-search:open": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "Q"
+    }
+  ]
 }

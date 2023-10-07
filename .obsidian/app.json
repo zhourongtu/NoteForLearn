@@ -1,5 +1,6 @@
 {
-  "alwaysUpdateLinks": false,
+  "alwaysUpdateLinks": true,
   "showUnsupportedFiles": true,
-  "trashOption": "local"
+  "trashOption": "local",
+  "attachmentFolderPath": "./attachments"
 }
