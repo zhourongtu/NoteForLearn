@@ -1,18 +1,8 @@
 {
-  "app:go-back": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "ArrowLeft"
-    }
-  ],
   "app:go-forward": [
     {
       "modifiers": [
-        "Mod",
-        "Shift"
+        "Alt"
       ],
       "key": "ArrowRight"
     }
@@ -121,6 +111,14 @@
         "Alt"
       ],
       "key": "B"
+    }
+  ],
+  "app:go-back": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "ArrowLeft"
     }
   ]
 }
