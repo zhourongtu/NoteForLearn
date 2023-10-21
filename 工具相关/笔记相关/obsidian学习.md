@@ -40,7 +40,9 @@ cat
 	2. 后退：Alt + ←
 	3. 打开文件：Ctrl+P
 3. 在资源管理器中显示：Ctrl+Shift+E
-
+4. 搜索
+	1. 全局搜索：Ctrl+Shift+Q
+	2. 本文搜索：Ctrl+F
 
 # obsidian的同步策略
 https://sspai.com/post/72388

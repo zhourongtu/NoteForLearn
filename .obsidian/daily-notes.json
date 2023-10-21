@@ -1,3 +1,6 @@
 {
-  "folder": "日记"
+  "folder": "流水账记录/日记",
+  "format": "LL-ddd",
+  "template": "参考资料/文档模板/0.日记模板",
+  "autorun": true
 }
