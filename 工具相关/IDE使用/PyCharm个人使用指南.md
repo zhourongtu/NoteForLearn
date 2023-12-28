@@ -17,20 +17,31 @@
 - Scrollbar 编辑器滚动条
 - Notification tool Window 通知工具窗口（基本没软用）
 
+
 # 1.了解编辑器(Editor)
 - 参考资料：[编辑器基础](https://www.jetbrains.com/help/pycharm/using-code-editor.html)
+
+
 ## 编辑器结构
 - Scrollbar 滑动条展示错误与警告
 - breadcrumbs 面包屑导航（下侧）
 - Gutter 槽显示行数与标记
 - Tabs 显示当前打开的文件
+
+
 ## 导航功能
+- Ctrl + Tab 控制窗口切换。 ⭐⭐⭐⭐⭐
+- Shift + Shift 打开类Command Panel  ⭐⭐⭐⭐⭐
+- Ctrl + Shift + P 打开Action ⭐⭐⭐⭐⭐
+- Ctrl + Home 跳到文件首部 ⭐⭐⭐⭐⭐
+- Ctrl + End 跳到文件尾部 ⭐⭐⭐⭐⭐
+- Ctrl + Shift + Q 查找文本 ⭐⭐⭐⭐⭐
 - Ctrl + Shift + F12 只显示编辑器
 - Alt + F12 控制terminal显隐
-- Ctrl + Tab 控制窗口切换。⭐⭐⭐⭐⭐
 - F12 回到上一个窗口（可能是左边、下面）
 - IDE外观：Ctrl+`
 - 导航栏 Alt + Home
+
 
 # 重构工具
 - 1.ExtractMethod 提炼方法
