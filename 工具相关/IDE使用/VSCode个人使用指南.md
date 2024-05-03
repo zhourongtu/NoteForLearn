@@ -5,6 +5,13 @@
   - Ctrl+PageUp或者PageDown
   - Ctrl + Tab
 
+## 导航功能
+- Ctrl + Home 跳到文件首部 ⭐⭐⭐⭐⭐
+- Ctrl + End 跳到文件尾部 ⭐⭐⭐⭐⭐
+- Ctrl + Shift + P 打开Command Panel ⭐⭐⭐⭐⭐
+- Ctrl + P 查找文件 ⭐⭐⭐⭐⭐
+- Ctrl + Shift + Q 查找文本 ⭐⭐⭐⭐⭐
+
 ### 1.使用特定方式解析某个文件
 - setting.json中添加
 ``` json
