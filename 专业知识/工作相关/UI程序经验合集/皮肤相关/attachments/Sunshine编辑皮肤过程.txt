@@ -1,0 +1,15 @@
+title 使用Sunshine编辑皮肤过程
+# 
+Sunshine->ClientSunshinePlugin:GetModelDataById(a_id, high_quality)
+ClientSunshinePlugin->ModelDataImporter:import_data_pure(a_id, high_quality)
+ModelDataImporter->Disk:读取磁盘上的py文件数据
+Disk-->ModelDataImporter: a_dict_data
+ModelDataImporter-->ClientSunshinePlugin:a_dict_data
+ClientSunshinePlugin-->Sunshine:return a_dict_data
+
+note left of Sunshine:编辑a_dict_data
+
+Sunshine->ClientSunshinePlugin:SaveModelData(a_dict_data, high_quality)
+ClientSunshinePlugin->ModelDataExporter:export_a_data
+ModelDataExporter->Disk:将py文件的数据写入磁盘
+
